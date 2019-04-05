@@ -35,4 +35,5 @@ export interface FieldConfig {
   styles?: any;
   classes?: string[];
   placeholder? :string;
+  buttonType?: string;
 }

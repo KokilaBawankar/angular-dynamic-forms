@@ -380,10 +380,21 @@ export class AppComponent {
     },
     {
       type: 'button',
+      buttonType: 'submit',
       label: {
         text: 'Save',
         styles: {},
         classes: ['btn', 'btn-primary', 'btn-sm']
+      },
+      classes: []
+    },
+    {
+      type: 'button',
+      buttonType: 'reset',
+      label: {
+        text: 'Reset',
+        styles: {},
+        classes: ['btn', 'btn-info', 'btn-sm']
       },
       classes: []
     }

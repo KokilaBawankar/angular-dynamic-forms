@@ -9,7 +9,7 @@ import {FieldConfig} from "../../field.interface";
          [formGroup]="group"
          [ngClass]="field.classes"
          [ngStyle]="field.styles">
-      <button type="submit"
+      <button [type]="field.buttonType"
               [ngClass]="field.label.classes"
               [ngStyle]="field.label.styles">{{field.label.text}}</button>
     </div>

@@ -7,7 +7,7 @@ import {FormDataService} from "../../form-data.service";
   exportAs: "dynamicForm",
   selector: "dynamic-form",
   template: `
-    <form [formGroup]="form" (submit)="onSubmit($event)">
+    <form [formGroup]="form" (submit)="onSubmit($event)" (reset)="onReset($event)">
       <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
       </ng-container>
     </form>
@@ -48,6 +48,18 @@ export class DynamicFormComponent implements OnInit {
       this.submit.emit(this.formDataService.formData);
     } else {
       this.validateAllFormFields(this.form);
+    }
+  }
+
+  onReset(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.form.reset();
+    this.formDataService.formData = this.form.value;
+    for (let i = 0 ; i < this.fields.length ; i ++ ) {
+      if(this.fields[i].type === 'checkbox') {
+        this.formDataService.formData[this.fields[i].name] = [];
+      }
     }
   }
 
