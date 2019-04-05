@@ -31,13 +31,6 @@ export class AppComponent {
       }
     },
     {
-      type: 'radiobutton',
-      label: 'Gender',
-      name: 'gender',
-      options: ['Male', 'Female'],
-      value: 'Male'
-    },
-    {
       type: 'heading',
       label: 'Airline Marketing/Forms : ADSP01',
       styles: {
@@ -252,7 +245,7 @@ export class AppComponent {
     {
       type: 'button',
       value: 'Save',
-      class: 'btn btn-primary'
+      class: 'btn btn-primary btn-sm'
     }
   ];
 

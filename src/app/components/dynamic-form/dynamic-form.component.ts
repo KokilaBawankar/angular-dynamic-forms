@@ -7,7 +7,7 @@ import {FormDataService} from "../../form-data.service";
   exportAs: "dynamicForm",
   selector: "dynamic-form",
   template: `
-    <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">
+    <form [formGroup]="form" (submit)="onSubmit($event)">
       <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
       </ng-container>
     </form>

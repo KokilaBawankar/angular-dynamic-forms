@@ -6,7 +6,7 @@ import {FormDataService} from "../../form-data.service";
 @Component({
   selector: 'app-input',
   template: `
-    <div class="demo-full-width form-group" [formGroup]="group">
+    <div class="form-group" [formGroup]="group">
       <label [for]="field.name" *ngIf="field.label">{{field.label}}</label>
       <input class="form-control"
              [id]='field.name'

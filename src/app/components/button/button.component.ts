@@ -5,8 +5,10 @@ import {FieldConfig} from "../../field.interface";
 @Component({
   selector: "app-button",
   template: `
-    <div class="demo-full-width margin-top" [formGroup]="group">
-      <button type="submit" class="{{field.class}}">{{field.value}}</button>
+    <div class="form-group" [formGroup]="group">
+      <button type="submit"
+              [ngClass]="field.class"
+              [ngStyle]="field.styles">{{field.value}}</button>
     </div>
   `,
   styles: []

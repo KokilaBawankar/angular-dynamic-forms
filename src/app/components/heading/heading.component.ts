@@ -5,7 +5,7 @@ import {FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-heading',
   template: `
-    <div [ngStyle]="field.styles">{{field.label}}</div>
+    <div [ngStyle]="field.styles" [ngClass]="field.class">{{field.label}}</div>
   `,
   styles: ['']
 })
