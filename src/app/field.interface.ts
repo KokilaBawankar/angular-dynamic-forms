@@ -14,4 +14,5 @@ export interface FieldConfig {
   validations?: Validator[];
   styles?: any;
   class?: any;
+  placeholder? :string;
 }

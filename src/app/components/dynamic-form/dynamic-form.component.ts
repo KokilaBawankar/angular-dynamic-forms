@@ -1,27 +1,16 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output
-} from "@angular/core";
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl
-} from "@angular/forms";
-import { FieldConfig, Validator } from "../../field.interface";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {FieldConfig} from "../../field.interface";
+import {FormDataService} from "../../form-data.service";
 
 @Component({
   exportAs: "dynamicForm",
   selector: "dynamic-form",
   template: `
-  <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">
-  <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
-  </ng-container>
-  </form>
+    <form class="dynamic-form" [formGroup]="form" (submit)="onSubmit($event)">
+      <ng-container *ngFor="let field of fields;" dynamicField [field]="field" [group]="form">
+      </ng-container>
+    </form>
   `,
   styles: []
 })
@@ -32,21 +21,31 @@ export class DynamicFormComponent implements OnInit {
 
   form: FormGroup;
 
-  get value() {
-    return this.form.value;
+  constructor(private fb: FormBuilder,
+              private formDataService: FormDataService) {
   }
-  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.createControl();
+
+    this.formDataService.formData = this.form.value;
+    for (let i = 0 ; i < this.fields.length ; i ++ ) {
+      if(this.fields[i].type === 'checkbox') {
+        this.formDataService.formData[this.fields[i].name] = [];
+        for (let j = 0 ; j < this.fields[i].options.length ; j++ ) {
+          if(this.fields[i].options[j].checked) {
+            this.formDataService.formData[this.fields[i].name].push(this.fields[i].options[j].label);
+          }
+        }
+      }
+    }
   }
 
   onSubmit(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log(this.form);
     if (this.form.valid) {
-      this.submit.emit(this.form.value);
+      this.submit.emit(this.formDataService.formData);
     } else {
       this.validateAllFormFields(this.form);
     }
@@ -55,7 +54,9 @@ export class DynamicFormComponent implements OnInit {
   createControl() {
     const group = this.fb.group({});
     this.fields.forEach(field => {
-      if (field.type === 'button' || field.type === 'heading') {return;}
+      if (field.type === 'button' || field.type === 'heading') {
+        return;
+      }
       const control = this.fb.control(
         field.value,
         this.bindValidations(field.validations || [])
@@ -79,7 +80,7 @@ export class DynamicFormComponent implements OnInit {
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      control.markAsTouched({ onlySelf: true });
+      control.markAsTouched({onlySelf: true});
     });
   }
 }

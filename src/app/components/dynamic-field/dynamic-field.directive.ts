@@ -1,11 +1,4 @@
-import {
-  ComponentFactoryResolver,
-  ComponentRef,
-  Directive,
-  Input,
-  OnInit,
-  ViewContainerRef
-} from "@angular/core";
+import { ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef} from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FieldConfig } from "../../field.interface";
 import { InputComponent } from "../input/input.component";
