@@ -1,4 +1,7 @@
 <div style="margin: 0px 20px">
   <dynamic-form [fields]="regConfig" (submit)="submit($event)">
   </dynamic-form>
+  <div>
+    {{ formDataService.formData | json }}
+  </div>
 </div>

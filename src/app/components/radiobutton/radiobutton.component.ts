@@ -21,6 +21,10 @@ import {FormDataService} from "../../form-data.service";
                [(ngModel)]="formDataService.formData[field.name]">
         <label class="form-check-label">{{item.label}}</label>
       </div>
+      <ng-container *ngIf="field.validations && field.validations[0].name === 'required'">
+        <div *ngIf="group.get(field.name).touched && formDataService.radioButtonValidity(field.name)"
+             class="invalid-feedback" style="display: initial">{{field.validations[0].message}}</div>
+      </ng-container>
     </div>
   `,
   styles: []

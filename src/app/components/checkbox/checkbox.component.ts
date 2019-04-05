@@ -23,6 +23,10 @@ import {FormDataService} from "../../form-data.service";
                [ngClass]="item.classes" 
                [ngStyle]="item.styles">{{item.label}}</label>
       </div>
+      <ng-container *ngIf="field.validations && field.validations[0].name === 'required'">
+        <div *ngIf="group.get(field.name).touched && formDataService.checkBoxValidity(field.name)"
+             class="invalid-feedback" style="display: initial">{{field.validations[0].message}}</div>
+      </ng-container>
     </div>
   `,
   styles: []
@@ -31,7 +35,7 @@ export class CheckboxComponent {
   field: FieldConfig;
   group: FormGroup;
 
-  constructor(private formDataService: FormDataService) {
+  constructor(public formDataService: FormDataService) {
   }
 
   onChange(event, item) {

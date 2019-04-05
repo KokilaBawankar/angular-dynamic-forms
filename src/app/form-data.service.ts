@@ -6,5 +6,20 @@ import { Injectable } from '@angular/core';
 export class FormDataService {
 
   formData: any;
-  constructor() { }
+
+  checkBoxValidity(name: string) {
+    if (this.formData[name].length == 0){
+      return true; //field invalid
+    }else {
+      return false; //field valid
+    }
+  }
+
+  radioButtonValidity(name: string) {
+    if (this.formData[name] === ''){
+      return true; //field invalid
+    }else {
+      return false; //field valid
+    }
+  }
 }

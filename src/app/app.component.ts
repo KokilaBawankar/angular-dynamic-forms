@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Validators} from '@angular/forms';
 import {FieldConfig} from './field.interface';
 import {DynamicFormComponent} from './components/dynamic-form/dynamic-form.component';
+import {FormDataService} from "./form-data.service";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,10 @@ import {DynamicFormComponent} from './components/dynamic-form/dynamic-form.compo
 })
 export class AppComponent {
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+
+  constructor(public formDataService: FormDataService) {
+  }
+
   regConfig: FieldConfig[] = [
     {
       type: 'input',
@@ -35,31 +40,6 @@ export class AppComponent {
       styles: {
         'width': '200px',
       }
-    },
-    {
-      type: 'radiobutton',
-      label: {
-        text: 'Gender',
-        styles: {},
-        classes: []
-      }
-      ,
-      name: 'gender',
-      options: [
-        {
-          label: 'Male',
-          checked: true,
-          styles: {},
-          classes: []
-        },
-        {
-          label: 'Female',
-          checked: false,
-          styles: {},
-          classes: []
-        }
-      ],
-      value: 'Male'
     },
     {
       type: 'heading',
@@ -173,6 +153,37 @@ export class AppComponent {
           name: 'required',
           validator: Validators.required,
           message: 'Date of Comencement Required'
+        }
+      ]
+    },
+    {
+      type: 'radiobutton',
+      label: {
+        text: 'Gender',
+        styles: {},
+        classes: ['text-primary']
+      },
+      name: 'gender',
+      options: [
+        {
+          label: 'Male',
+          checked: false,
+          styles: {},
+          classes: []
+        },
+        {
+          label: 'Female',
+          checked: false,
+          styles: {},
+          classes: []
+        }
+      ],
+      value: '',
+      validations: [
+        {
+          name: 'required',
+          validator: Validators.required,
+          message: 'Gender Required'
         }
       ]
     },
@@ -363,7 +374,7 @@ export class AppComponent {
         {
           name: 'required',
           validator: Validators.required,
-          message: 'Date of Comencement Required'
+          message: 'Documents checklist Required'
         }
       ]
     },
