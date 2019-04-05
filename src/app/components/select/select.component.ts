@@ -5,8 +5,13 @@ import {FieldConfig} from "../../field.interface";
 @Component({
   selector: "app-select",
   template: `
-    <div class="form-group" [formGroup]="group">
-      <label *ngIf="field.label" [for]="field.name">{{field.label}}</label>
+    <div class="form-group" [formGroup]="group" [ngStyle]="field.styles" [ngClass]="field.classes">
+      <label *ngIf="field.label" 
+             [for]="field.name"
+             [ngStyle]="field.label.styles"
+             [ngClass]="field.label.classes">
+        {{field.label.text}}
+      </label>
       <select class="form-control"
               [formControlName]="field.name" 
               [id]="field.name"

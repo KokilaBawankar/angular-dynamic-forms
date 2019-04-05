@@ -6,8 +6,10 @@ import {FormDataService} from "../../form-data.service";
 @Component({
   selector: "app-checkbox",
   template: `
-    <div class="form-group" [formGroup]="group">
-      <label *ngIf="field.label">{{field.label}}</label>
+    <div class="form-group" [formGroup]="group" [ngClass]="field.classes" [ngStyle]="field.styles">
+      <label *ngIf="field.label"
+             [ngClass]="field.label.classes"
+             [ngStyle]="field.label.styles">{{field.label.text}}</label>
       <div class="form-check" *ngFor="let item of field.options">
         <input class="form-check-input"
                type="checkbox"
@@ -17,7 +19,9 @@ import {FormDataService} from "../../form-data.service";
                [value]="item.label"
                [checked]="item.checked"
                (change)="onChange($event, item.label)">
-        <label class="form-check-label">{{item.label}}</label>
+        <label class="form-check-label" 
+               [ngClass]="item.classes" 
+               [ngStyle]="item.styles">{{item.label}}</label>
       </div>
     </div>
   `,

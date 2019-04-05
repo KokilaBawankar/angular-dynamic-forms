@@ -6,15 +6,16 @@ import {FormDataService} from "../../form-data.service";
 @Component({
   selector: 'app-date',
   template: `
-    <div class="form-group" [formGroup]="group">
-      <label [for]="field.name" *ngIf="field.label">{{field.label}}</label>
+    <div class="form-group" [formGroup]="group" [ngClass]="field.classes" [ngStyle]="field.styles">
+      <label [for]="field.name" 
+             *ngIf="field.label"
+             [ngClass]="field.label.classes"
+             [ngStyle]="field.label.styles">{{field.label.text}}</label>
       <input class="form-control"
-             type="date" 
+             [type]="field.inputType.type" 
              [id]="field.name" 
              [formControlName]="field.name" 
              [name]="field.name" 
-             [ngClass]="field.class"
-             [ngStyle]="field.styles"
              [(ngModel)]="formDataService.formData[field.name]">
       
       <ng-container *ngFor="let validation of field.validations;">

@@ -6,16 +6,20 @@ import {FormDataService} from "../../form-data.service";
 @Component({
   selector: "app-radiobutton",
   template: `
-    <div [formGroup]="group" xmlns="http://www.w3.org/1999/html">
-      <label *ngIf="field.label">{{field.label}}:</label>
+    <div [formGroup]="group" [ngStyle]="field.styles" [ngClass]="field.classes">
+      <label *ngIf="field.label"
+             [ngStyle]="field.label.styles"
+             [ngClass]="field.label.classes">
+        {{field.label.text}}
+      </label>
       <div class="form-check" *ngFor="let item of field.options">
         <input class="form-check-input" 
                type="radio"
-               [id]="item"
+               [id]="item.label"
                [formControlName]="field.name"
-               [value]="item"
+               [value]="item.label"
                [(ngModel)]="formDataService.formData[field.name]">
-        <label class="form-check-label">{{item}}</label>
+        <label class="form-check-label">{{item.label}}</label>
       </div>
     </div>
   `,

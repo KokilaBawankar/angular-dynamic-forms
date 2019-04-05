@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { FieldConfig } from './field.interface';
-import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import {Component, ViewChild} from '@angular/core';
+import {Validators} from '@angular/forms';
+import {FieldConfig} from './field.interface';
+import {DynamicFormComponent} from './components/dynamic-form/dynamic-form.component';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,17 @@ export class AppComponent {
   regConfig: FieldConfig[] = [
     {
       type: 'input',
-      label: 'Ref. No.:',
+      label: {
+        text: 'Ref. No.:',
+        styles: {},
+        classes: ['text-primary']
+      },
       placeholder: 'Ref. No.:',
-      inputType: 'text',
+      inputType: {
+        type: 'text',
+        styles: {},
+        classes: []
+      },
       name: 'refNo',
       validations: [
         {
@@ -26,34 +34,71 @@ export class AppComponent {
       ],
       styles: {
         'width': '200px',
-        'height': '30px',
-        'text-align': 'center',
+      }
+    },
+    {
+      type: 'radiobutton',
+      label: {
+        text: 'Gender',
+        styles: {},
+        classes: []
+      }
+      ,
+      name: 'gender',
+      options: [
+        {
+          label: 'Male',
+          checked: true,
+          styles: {},
+          classes: []
+        },
+        {
+          label: 'Female',
+          checked: false,
+          styles: {},
+          classes: []
+        }
+      ],
+      value: 'Male'
+    },
+    {
+      type: 'heading',
+      label: {
+        text: 'Airline Marketing/Forms : ADSP01',
+        styles: {
+          'font-size': '12px',
+          'font-weight': '500'
+        },
+        classes: ['text-primary']
       }
     },
     {
       type: 'heading',
-      label: 'Airline Marketing/Forms : ADSP01',
-      styles: {
-        'font-size': '12px',
-        'font-weight': '500'
-      }
-    },
-    {
-      type: 'heading',
-      label: 'ADSP Assesment Form: AIP III Marketing Fund',
-      styles: {
-        'font-size': '30px',
-        'font-weight': '600',
-        'text-align': 'center',
-        'text-decoration': 'underline',
-        'text-transform': 'uppercase',
+      label: {
+        text: 'ADSP Assesment Form: AIP III Marketing Fund',
+        styles: {
+          'font-size': '30px',
+          'font-weight': '600',
+          'text-align': 'center',
+          'text-decoration': 'underline',
+          'text-transform': 'uppercase',
+        },
+        classes: ['text-info']
       }
     },
     {
       type: 'input',
-      label: 'Airlines/Company:',
+      label: {
+        text: 'Airlines/Company:',
+        styles: {},
+        classes: ['text-primary']
+      },
       placeholder: 'Airlines/Company:',
-      inputType: 'text',
+      inputType: {
+        type: 'text',
+        styles: {},
+        classes: []
+      },
       name: 'company',
       value: 'China Airlines',
       validations: [
@@ -66,9 +111,17 @@ export class AppComponent {
     },
     {
       type: 'input',
-      label: 'Routing:',
+      label: {
+        text: 'Routing:',
+        styles: {},
+        classes: ['text-primary']
+      },
       placeholder: 'Routing:',
-      inputType: 'text',
+      inputType: {
+        type: 'text',
+        styles: {},
+        classes: []
+      },
       name: 'routing',
       value: 'TPE/KUL',
       validations: [
@@ -81,9 +134,17 @@ export class AppComponent {
     },
     {
       type: 'input',
-      label: 'Flight Number:',
+      label: {
+        text: 'Flight Number:',
+        styles: {},
+        classes: ['text-primary']
+      },
       placeholder: 'Flight Number:',
-      inputType: 'text',
+      inputType: {
+        type: 'text',
+        styles: {},
+        classes: []
+      },
       name: 'flightNo',
       value: 'CZ8453/8454',
       validations: [
@@ -96,7 +157,16 @@ export class AppComponent {
     },
     {
       type: 'date',
-      label: 'Date of Comencement:',
+      label: {
+        text: 'Date of Comencement:',
+        styles: {},
+        classes: ['text-primary']
+      },
+      inputType: {
+        type: 'date',
+        styles: {},
+        classes: []
+      },
       name: 'dateOfComencement',
       validations: [
         {
@@ -108,130 +178,185 @@ export class AppComponent {
     },
     {
       type: 'checkbox',
-      label: 'Category:',
+      label: {
+        text: 'Category:',
+        styles: {},
+        classes: ['text-primary']
+      },
       name: 'category',
       value: false,
       options: [
         {
           label: 'FOCA',
-          checked: true
-        },{
+          checked: true,
+          styles: {
+            'text-decoration': 'underline'
+          },
+          classes: ['text-primary']
+        }, {
           label: 'LOCA',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         }
-        ]
+      ]
     },
     {
       type: 'checkbox',
-      label: 'Service:',
+      label: {
+        text: 'Service:',
+        styles: {},
+        classes: ['text-primary']
+      },
       name: 'service',
       value: false,
       options: [
         {
           label: 'Schedule',
-          checked: true
-        },{
+          checked: true,
+          styles: {},
+          classes: []
+        }, {
           label: 'Charter',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         },
         {
           label: 'Cargo',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         }
       ]
     },
     {
       type: 'heading',
-      label: 'Part B: Claim details',
-      styles: {
-        'font-size': '20px',
-        'font-weight': '600',
-        'text-decoration': 'underline',
-        'text-transform': 'uppercase',
+      label: {
+        text: 'Part B: Claim details',
+        styles: {
+          'font-size': '20px',
+          'font-weight': '600',
+          'text-decoration': 'underline',
+          'text-transform': 'uppercase',
+        },
+        classes: []
       }
     },
     {
       type: 'heading',
-      label: 'Activity: News Paper Advertisement and KULMATTA Fair',
-      styles: {
-        'font-size': '15px',
-        'font-weight': '600',
-        'text-decoration': 'underline'
+      label: {
+        text: 'Activity: News Paper Advertisement and KULMATTA Fair',
+        styles: {
+          'font-size': '15px',
+          'font-weight': '600',
+          'text-decoration': 'underline'
+        },
+        classes: []
       }
     },
     {
       type: 'heading',
-      label: 'Duration: Jully until Sempetember 2018',
-      styles: {
-        'font-size': '15px',
-        'font-weight': '600',
+      label: {
+        text: 'Duration: Jully until Sempetember 2018',
+        styles: {
+          'font-size': '15px',
+          'font-weight': '600',
+        },
+        classes: []
       }
     },
     {
       type: 'checkbox',
-      label: 'Pay To:',
+      label: {
+        text: 'Pay To:',
+        styles: {},
+        classes: ['text-primary']
+      },
       name: 'payto',
       value: false,
       options: [
         {
           label: 'Airline',
-          checked: true
-        },{
+          checked: true,
+          styles: {},
+          classes: []
+        }, {
           label: 'Appointed Vendor',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         }
       ]
     },
     {
       type: 'heading',
-      label: 'Amount: RM26,500.00',
-      styles: {
-        'font-size': '15px',
-        'font-weight': '600',
+      label: {
+        text: 'Amount: RM26,500.00',
+        styles: {
+          'font-size': '15px',
+          'font-weight': '600',
+        },
+        classes: []
       }
     },
     {
       type: 'heading',
-      label: 'Available Balance: RM23,500.00',
-      styles: {
-        'font-size': '15px',
-        'font-weight': '600',
+      label: {
+        text: 'Available Balance: RM23,500.00',
+        styles: {
+          'font-size': '15px',
+          'font-weight': '600',
+        },
+        classes: []
       }
     },
     {
       type: 'heading',
-      label: 'Part C: Document Checklist',
-      styles: {
-        'font-size': '20px',
-        'font-weight': '600',
-        'text-decoration': 'underline',
-        'text-transform': 'uppercase',
+      label: {
+        text: 'Part C: Document Checklist',
+        styles: {
+          'font-size': '20px',
+          'font-weight': '600',
+          'text-decoration': 'underline',
+          'text-transform': 'uppercase',
+        },
+        classes: []
       }
     },
     {
       type: 'checkbox',
-      label: '',
       name: 'documentChecklist',
       value: false,
       options: [
         {
           label: 'Proof of Undertaken Activities',
-          checked: false
-        },{
+          checked: false,
+          styles: {},
+          classes: []
+        }, {
           label: 'Invoice',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         },
         {
           label: 'Receive Payment Proof',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         },
         {
           label: 'Letter of Appointment from Airlines',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         },
         {
           label: 'Account Details',
-          checked: false
+          checked: false,
+          styles: {},
+          classes: []
         }
       ],
       validations: [
@@ -244,8 +369,12 @@ export class AppComponent {
     },
     {
       type: 'button',
-      value: 'Save',
-      class: 'btn btn-primary btn-sm'
+      label: {
+        text: 'Save',
+        styles: {},
+        classes: ['btn', 'btn-primary', 'btn-sm']
+      },
+      classes: []
     }
   ];
 
